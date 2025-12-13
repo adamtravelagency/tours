@@ -1,0 +1,180 @@
+/*======THIS IS THE MAIN HEADER AND BODY, HAMBURGER STYLE HERE!====== */
+ /* Reset some default styles */
+  /* Reset box-sizing for all elements */
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+   /* Add padding to body to prevent content from hiding behind header */
+  body {
+    padding-top: 90px; /* Adjust this value based on header height */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    justify-content: center;
+    align-items: center; /* Change from flex-start to center */
+    padding: -20px; /* Optional, for some spacing on small screens */
+  }
+
+  /* Optional background overlay for visual appeal */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80'); /* Replace with your image URL */
+    background-size: cover;
+    background-position: center;
+    opacity: 0.2;
+    z-index: -1;
+  }
+
+   /* Basic styles for header */
+  header {
+    position: fixed; /* Make header fixed */
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    z-index: 9999; /* Ensure it stays above other content */
+  }
+
+  /* Logo and title container */
+  .logo-container {
+    display: flex;
+    align-items: center;
+  }
+
+  /* Logo image */
+  .logo {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+  }
+
+  /* Agency title */
+  .title {
+    margin-left: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    font-family: Georgia;
+    background: linear-gradient(to left, #4682b4, #87cefa); /* steelblue to light blue */
+   -webkit-background-clip: text;   /* make gradient apply to text */
+   -webkit-text-fill-color: transparent; /* hide original color */
+  }
+
+  /* Navigation styles */
+  nav {
+    display: flex;
+  }
+
+  nav ul {
+    display: flex;
+    list-style: none;
+  }
+
+  nav ul li {
+    margin-left: 20px;
+  }
+
+  nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1em;
+    transition: color 0.3s;
+    font-family: Georgia;
+  }
+
+  nav ul li a:hover {
+    color: #ddd;
+  }
+
+  /* Hamburger menu for mobile */
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    width: 30px;
+    height: 25px;
+    justify-content: space-between;
+  }
+
+  /* Hamburger lines */
+  .menu-toggle span {
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  /* Transform into X when active */
+  .menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    /* Hide navigation by default */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 250px;
+      background-color: #333;
+      flex-direction: column;
+      padding-top: 60px;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+      z-index: 1000;
+    }
+
+    /* Show menu when active */
+    nav.show {
+      transform: translateX(0);
+    }
+
+    /* Make nav occupy full height and be on left side */
+    nav ul {
+      flex-direction: column;
+      width: 100%;
+    }
+
+    nav ul li {  
+      margin: 15px 20px;
+    }
+
+   /* Show hamburger menu */
+    .menu-toggle {
+      display: flex;
+    }
+  }
+
+nav ul li a:hover {
+  color: #0077b6; /* Change to your preferred hover color */
+  background-color: rgba(255, 255, 255, 0.1); /* Optional: add background on hover */
+  transform: scale(1.05); /* Optional: slightly enlarge the link */
+  transition: all 0.3s ease; /* Smooth transition */
+}
+
+ /* FOOTER */
+footer{color:black;text-align:center;padding:30px 10px; font-family: Georgia;}
+footer a{color:#0077b6;text-decoration:none;margin:0 10px; font-family: Georgia;}
+
+
+/*======END OF MAIN HEADER AND BODY, HAMBURGER HERE!====== */
+/*======DO NOT TOUCH HERE UNLESS NEEDED!====== */

@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Visa Processing Form | Adam’s Travel Agency</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+
+/* ======================
+   MAINFORM STYLES
+====================== */
+  .form-wrapper {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 1200px;
+    width: 100%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    margin: 30px auto;
+  }
+
+  /* Logo & Header */
+  .logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  .logo-wrapper img {
+    height: 60px;
+  }
+
+  h2 {
+    text-align: center;
+    font-size: 2.2rem;
+    color: #006b8f;
+    margin-bottom: 30px;
+    font-family: Georgia;
+  }
+  
+    /* Mobile heading */
+  h2 {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+
+
+
+  /* The form layout: flex in rows */
+  form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 0;
+    font-family: Georgia;
+  }
+
+  /* Sections (fieldsets) style */
+fieldset {
+    flex: 1 1 45%;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  /* Make sections stack on small screens */
+  @media(max-width: 768px) {
+    fieldset {
+      flex: 1 1 100%;
+    }
+  }
+
+  legend {
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 0 10px;
+  }
+
+
+
+  /* Form groups in rows no of adults & no. of children space between input fields and the type of visa and process space between */
+.form-row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  /* Individual input containers */
+.form-group {
+    flex: 1 1 45%;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  label {
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="number"],
+  select {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-family: Georgia, serif;
+    font-size: 1rem;
+  }
+
+  input:focus,
+  select:focus {
+    border-color: #0097a7;
+    box-shadow: 0 0 8px rgba(0, 151, 167, 0.2);
+    outline: none;
+  }
+
+
+  /* Submit Button */
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 30px;
+    background: linear-gradient(135deg, #0077b6, #00b4d8);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: Georgia;
+  }
+
+button:hover {
+    background: linear-gradient(135deg, #0096c7, #48cae4);
+    transform: translateY(-2px);
+  }
+
+/*MEDIA QUERY START HERE*/
+
+/* START COLUMN STYLES OF ALL SECTION */
+@media(max-width:768px){
+  fieldset { flex:1 1 100%; }
+}
+/* END OF COLUMN STYLES OF ALL SECTION */
+/* Specific CSS for date inputs to ensure size consistency */
+  input[type="date"] {
+    width: 100% !important;
+    padding: 12px !important;
+    margin-bottom: 15px !important;
+    border: 1px solid #ccc !important;
+    border-radius: 4px !important;
+    font-size: 1em !important;
+
+    /* Normalize appearance across browsers and devices */
+    -webkit-appearance: none !important;
+    appearance: none !important;
+
+    box-sizing: border-box !important;
+    min-height: 44px !important; /* Touch-friendly height */
+  }
+
+  /* Responsive adjustments */
+  @media(max-width: 500px) {
+    body {
+      padding: 10px;
+    }
+  .form-wrapper{
+    margin-top: 110px;
+    /* The form layout: flex in rows */
+  }
+    }
+</style>
+</head>
+<body>
+
+<header>
+  <!-- Logo and Title -->
+  <div class="logo-container">
+    <img src="images/logo.png" alt="Logo" class="logo" id="logo-img" />
+    <span class="title">Adam's Travel Agency</span>
+  </div>
+  <!-- Navigation Menu -->
+  <nav id="nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="visa.html">Visa</a></li>
+      <li><a href="payments.html">Payments</a></li>
+    </ul>
+  </nav>
+  <!-- Hamburger Menu for Mobile -->
+  <div class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- ======================
+    MAIN CONTENT
+====================== -->
+<div class="form-wrapper">
+  <!-- Logo -->
+  <div class="logo-wrapper">
+    <img src="images/logo.png" alt="Adam's Travel Ageny Logo" />
+  </div>
+  <h2>Visa Application Form</h2>
+  <form id="visaForm">
+    <!-- Contact Details -->
+    <fieldset>
+      <legend>Contact Details</legend>
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="_replyto" placeholder="your@email.com" required />
+      </div>
+      <div class="form-group">
+        <label for="adult-names">Names of Adults</label>
+        <input type="text" id="adult-names" name="adult-names" placeholder="Enter names of adults" required />
+      </div>
+      <div class="form-group">
+        <label for="children-names">Names of Children</label>
+        <input type="text" id="children-names" name="children-names" placeholder="Enter children names" />
+      </div>
+    </fieldset>
+
+    <!-- Travel Details -->
+    <fieldset>
+      <legend>Travel Details</legend>
+      <!-- Number of visa applicants & embassy -->
+      <div class="form-row">
+        <div class="form-group">
+          <label for="adults">Adults</label>
+          <input type="number" id="adults" name="adults" min="1" placeholder="Age above 12+" required />
+        </div>
+        <div class="form-group">
+          <label for="children">Children</label>
+          <input type="number" id="children" name="children" min="0" placeholder="Age 12 or below" required />
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:5px;">
+        <label for="embassy">Select Embassy</label>
+        <select id="embassy" name="embassy" required>
+          <option value="">Select</option>
+          <option value="Australia">Australia</option>
+          <option value="Canada">Canada</option>
+          <option value="USA">USA</option>
+          <option value="France">France</option>
+          <option value="Spain">Spain</option>
+          <option value="Norway">Norway</option>
+          <option value="Sweden">Sweden</option>
+          <option value="New Zealand">New Zealand</option>
+          <option value="Japan">Japan</option>
+          <option value="Taiwan">Taiwan</option>
+          <option value="Turkey">Turkey</option>
+          <option value="Dubai">Dubai</option>
+          <option value="Russia">Russia</option>
+          <option value="China">China</option>
+          <option value="Korea">Korea</option>
+          <option value="Other Countries">Other Countries</option>
+        </select>
+      </div>
+      <div class="form-group" style="margin-top:5px;">
+        <label for="entries">Number of Entries</label>
+        <select id="entries" name="entries" required>
+          <option value="">Select</option>
+          <option value="single">Single</option>
+          <option value="multiple">Multiple</option>
+        </select>
+      </div>
+    </fieldset>
+
+    <!-- Visa Details -->
+    <fieldset>
+      <legend>Visa Details</legend>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="visa_type">Type of Visa</label>
+          <select id="visa_type" name="visa_type" required>
+            <option value="">Select</option>
+            <option value="Tourist">Tourist</option>
+            <option value="Business">Business</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="process">Process</label>
+          <select id="process" name="process" required>
+            <option value="">Select</option>
+            <option value="Regular">Regular</option>
+            <option value="Expedite">Expedite</option>
+          </select>
+        </div>
+      </div>
+    </fieldset>
+
+    <!-- Hidden input for Booking ID -->
+    <input type="hidden" name="booking_id" id="booking_id_field" />
+
+    <!-- Submit Button -->
+    <button type="submit">Submit Application</button>
+  </form>
+
+
+<!-- Confirmation Section -->
+<div id="confirmationDisplay" style="display:none; max-width:600px; margin:20px auto; background:#fff; padding:20px; border-radius:8px;">
+
+  <h2 style="text-align:center; color:#007bff;">Visa Application Submission Confirmed!</h2>
+
+  <div id="bookingDetails" style="margin-top:20px; background:#f9f9f9; padding:15px; border-radius:5px;"></div>
+
+  <div style="display:flex; gap:15px; justify-content:center; margin-top:20px;">
+    <button onclick="window.location.href='payments.html'">Go to Payment</button>
+    <button onclick="resetForm()" style="background:#6c757d;">Book Again</button>
+  </div>
+ </div>
+</div>
+
+<!-- JavaScript -->
+<script>
+    //======HANDLE FORM SUBMISSION VIA AJAX======>
+   document.getElementById('visaForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+
+  // Generate a unique booking ID
+  const bookingID = 'BK' + Math.floor(Math.random() * 1000000);
+
+  // Collect form data into an object
+  const formDataObj = {};
+  new FormData(form).forEach((value, key) => {
+    formDataObj[key] = value;
+  });
+
+  // Save the booking info in sessionStorage
+  sessionStorage.setItem('visaBooking', JSON.stringify({ 
+    id: bookingID,
+    data: formDataObj
+  }));
+
+  // Set the booking ID in the hidden input
+  document.getElementById('booking_id_field').value = bookingID;
+
+  // Submit to Formspree
+  fetch('https://formspree.io/f/xeoynjpa', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json'
+    },
+    body: new FormData(form)
+  }).then(response => {
+    if (response.ok) {
+      // Show confirmation
+      document.getElementById('visaForm').style.display = 'none';
+      document.getElementById('confirmationDisplay').style.display = 'block';
+
+      // Display details
+      document.getElementById('bookingDetails').innerHTML = `
+        <p><strong>Booking ID:</strong> ${bookingID}</p>
+        <p><strong>Email:</strong> ${formDataObj['_replyto']}</p>
+        <p><strong>Names of Adults:</strong> ${formDataObj['adult-names']}</p>
+        <p><strong>Names of Children:</strong> ${formDataObj['children-names']}</p>
+        <p><strong>Number of Adults:</strong> ${formDataObj['adults']}</p>
+        <p><strong>Number of Children:</strong> ${formDataObj['children']}</p>
+        <p><strong>Embassy:</strong> ${formDataObj['embassy']}</p>
+        <p><strong>Number of Entries:</strong> ${formDataObj['entries']}</p>
+        <p><strong>Type of Visa:</strong> ${formDataObj['visa_type']}</p>
+        <p><strong>Process:</strong> ${formDataObj['process']}</p>
+      `;
+    } else {
+      response.json().then(data => {
+        alert('Oops! There was a problem submitting your form.');
+        console.log('Response error data:', data);
+      });
+    }
+  }).catch(error => {
+    alert('Oops! There was a problem submitting your form.');
+    console.error('Fetch error:', error);
+  });
+});
+
+    //======RESET FUNCTION======>
+    window.resetForm = () => {
+      document.getElementById('visaForm').style.display = 'block';
+      document.getElementById('confirmationDisplay').style.display = 'none';
+      document.getElementById('visaForm').reset();
+    };
+
+    //======TOGGLE MOBILE MENU AND HAMBURGER TRANSFORMATION======>
+    const menuToggle = document.getElementById('menu-toggle');
+    const nav = document.getElementById('nav');
+
+    menuToggle.addEventListener('click', () => {
+      nav.classList.toggle('show');
+      menuToggle.classList.toggle('active');
+      const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+      menuToggle.setAttribute('aria-expanded', String(!expanded));
+    });
+
+    //======ALLOW TOGGLING WITH ENTER OR SPACE======>
+    menuToggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' '){
+        e.preventDefault();
+        menuToggle.click();
+      }
+    });
+
+
+    // Save initial form data on page load
+const form = document.getElementById('visaForm');
+let initialFormData = new FormData(form);
+const initialData = {};
+initialFormData.forEach((value, key) => {
+  initialData[key] = value;
+});
+
+// Extend your reset function
+window.resetForm = () => {
+  // Reset form to initial state
+  form.reset();
+
+  // Optional: re-populate default values if needed
+  for (const key in initialData) {
+    const element = document.querySelector(`[name="${key}"]`);
+    if (element) {
+      element.value = initialData[key];
+    }
+  }
+
+  // Show form again and hide confirmation
+  document.getElementById('visaForm').style.display = 'block';
+  document.getElementById('confirmationDisplay').style.display = 'none';
+};
+
+window.resetForm = () => {
+  window.location.reload();
+};
+
+</script>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <p>&copy; 2022 Adam's Travel Agency. All rights reserved.</p>
+  <p>
+    <a href="privacy.html" style="text-decoration:none; color:#007bff;">Privacy Policy</a> | 
+    <a href="terms.html" style="text-decoration:none; color:#007bff;">Terms of Service</a>
+  </p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Payments | Adam’s Travel Agency</title>
+<link rel="stylesheet" href="css/style.css" />
+<style>
+  /* =======================
+     PAYMENT PAGE CONTENT
+  ======================= */
+
+    .container {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 20px;
+       max-width: 1000px;
+       margin: auto;
+       padding: 55px 20px 55px;
+       margin-top: -20px;
+      font-family: Georgia;
+    }
+
+
+    #section-card, 
+    #section-card * {
+      border: none; !important;
+      box-shadow: none;
+      outline: none !important;
+    }
+
+    .left, .center, .right {
+       background: #fff;
+       padding: 15px; /* equal padding left and right */
+       border-radius: 8px;
+       box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+       min-width: 200px;
+    }
+
+    .left { flex: 1 1 200px; }
+    .center { flex: 2 1 400px; }
+    .right { flex: 1 1 200px; }
+
+
+    .left p { font-weight: bold; margin-bottom: 10px; margin-top:10px }
+    hr { margin: 10px 0; border: 1px solid #ccc; }
+
+    .right p { font-weight: bold; margin-bottom: 10px; margin-top:10px }
+    hr { margin: 10px 0; border: 1px solid #ccc; }
+
+    .methods { display: flex; flex-direction: column; gap: 10px; }
+    .methods div {
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    .methods div:hover { background-color: #f0f0f0; }
+
+    .details { padding: 10px 0; }
+
+  
+    /* ========= BANK LINKS SPACING ======== */
+    .bank-wrapper p {
+      margin: 0;
+      padding: 3px 0;
+
+    }
+    .bank-wrapper a {
+      display: block;
+      padding: 0;
+    }
+
+    /* ======== UPLOAD RECEIPT BUTTON 
+    STYLE FOR BANK AND GCASH======== */
+    .upload-receipt-btn {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      width: 100%;
+      justify-content: center;
+      font-family: Georgia, serif;
+    }
+
+    /* Hover effect */
+    .upload-receipt-btn:hover {
+      background: linear-gradient(135deg, #0096c7, #48cae4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+      color: black;
+    }
+
+    /* Click effect */
+    .upload-receipt-btn:active {
+      transform: scale(0.97);
+    }
+
+    #section-gcash p {
+      margin: 2px 0;   /* adjust as you like */
+    }
+
+    .gcash-title {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+
+   /* ===BUTTON FOR UPDATE AMOUNT IN CREDIT CARD=== */
+   /* FOR DESKTOP only*/
+     /* CSS to stack input on top of button */
+    /* Make input and button stack vertically on all screen sizes */
+    .amount-container {
+      display: flex;
+      flex-direction: column;
+      gap: 10px; /* space between label and input */
+      width: 100%;
+      margin-top: 10px;
+    }
+
+    .button-wrapper {
+      margin-top: 10px; /* space between input and button */
+      display: flex; /* optional: to align button if needed */
+      justify-content: flex-start; /* align to the left */
+    }
+
+     #updateButton {
+      background: linear-gradient(135deg, #0077b6, #00b4d8);
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: flex;
+      gap: 8px;
+      transition: 0.3s ease;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.25);
+      width: 100%;
+      justify-content: center;
+      height: 40px; /* or your preferred height */
+      font-family: Georgia, serif;
+    }
+
+     /* Hover effect */
+     #updateButton:hover {
+      background: linear-gradient(135deg, #0096c7, #48cae4);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.3);
+      color: black;
+    }
+      
+    #usdAmount {
+      padding: 10px 15px;
+      font-size: 1rem;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      outline: none;
+      transition: linear-gradient(135deg, #0077b6, #00b4d8);
+      flex: 1 1 10px; /* allows it to grow/shrink, starting at 180px */
+        
+    }
+
+    #usdAmount:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    #convertedAmount {
+      font-weight: bold;
+    }
+
+
+</style>
+</head>
+<body>
+
+<header>
+  <!-- Logo and Title -->
+  <div class="logo-container">
+    <img src="images/logo.png" alt="Logo" class="logo" id="logo-img" />
+    <span class="title">Adam's Travel Agency</span>
+  </div>
+
+  <!-- Navigation Menu -->
+  <nav id="nav">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="flights.html">Flights</a></li>
+      <li><a href="hotels.html">Hotels</a></li>
+      <li><a href="visa.html">Visa</a></li>
+      <li><a href="payments.html">Payments</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hamburger Menu for Mobile -->
+  <div class="menu-toggle" id="menu-toggle" aria-label="Menu" aria-expanded="false" role="button" tabindex="0">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</header>
+
+<!-- ======================
+EVERYTHING ELSE UNTOUCHED
+====================== -->
+<div class="container">
+  <!-- LEFT -->
+  <div class="left">
+    <p>Payment methods</p>
+    <hr>
+    <div class="methods">
+       <div onclick="doFun()" id="tColorA" style="color: #0077b6; position: relative; padding-bottom: 2px; border-bottom: 1px solid rgba(0, 119, 182, 0.2);">
+          <span style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+            <span><i class="fa-solid fa-credit-card"></i>Pay with Debit/Credit Card</span>
+            <i class="fa-solid fa-angle-right"></i>
+          </span>
+       </div>
+
+       <div onclick="doFunA()" id="tColorB" style="color: #0077b6; position: relative; padding-bottom: 2px; border-bottom: 1px solid rgba(0, 119, 182, 0.2);">
+          <span style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+            <span><i class="fa-solid fa-building-columns"></i> Bank Deposit</span>
+            <i class="fa-solid fa-angle-right"></i>
+          </span>
+       </div>  
+
+      <div onclick="doFunB()" id="tColorC" style="color: #0077b6; position: relative; padding-bottom: 2px; border-bottom: 1px solid rgba(0, 119, 182, 0.2);">
+        <span style="display:flex; align-items:center; justify-content:space-between; width:100%;">
+          <span><i class="fa-solid fa-wallet"></i> Gcash</span>
+          <i class="fa-solid fa-angle-right"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CENTER -->
+  <div class="center">
+    <a href="https://www.shift4shop.com/credit-card-logos.html" target="_blank" style="display: block; text-align: center;">
+      <img alt="Credit Card Logos" src="https://www.shift4shop.com/images/credit-card-logos/cc-lg-5.png" width="250" style="display: block; margin: 0 auto;">
+    </a>
+    <hr>
+
+    <div id="section-card">
+      <div class="card-details">
+        <h2>Pay with PayPal (PHP)</h2>
+       <div class="amount-container">
+    <label for="usdAmount">Enter USD amount:</label>
+    <input type="number" id="usdAmount" value="1.00" step="0.01" min="0" />
+  </div>
+      <div class="button-wrapper">
+        <button type="button" id="updateButton">Update Amount</button>
+      </div>
+        <div id="convertedAmount" style="margin-top:15px;">Converted Amount: ₱0.00</div>
+        <p>
+          After securely entering the amount, click "Update Amount" before clicking PayPal.
+        </p>
+        <div id="paypal-button-container" style="margin-top:20px;"></div>
+      </div>
+    </div>
+
+    <!-- ===== BANK DEPOSIT SECTION ===== -->
+        <div class="bank-wrapper">
+          <div id="section-bank" style="display:none; padding:5x;">
+            <p style="font-weight:bold; margin-bottom:5px;">Bank Deposit Instructions</p>
+            <p>Scan the RCBC/Diskartech QR code below to pay via your bank:</p>
+
+            <div style="display:flex; gap:5px; margin-top:5px; flex-wrap:wrap;">
+
+              <div style="text-align:center;">
+                <img src="images/diskartech.jpeg" width="180" height="180" style="object-fit:contain;" alt="Second QR Code">
+              </div>
+            </div>
+
+            <p>You may also send your payment through your online banking:</p>
+            <div style="margin-top:5px; margin-bottom: 5px;">
+              <p><a href="https://www.rcbc.com/" target="_blank">RCBC Online</a></p>
+              <p><a href="https://www.onlinebanking.bdo.com.ph/" target="_blank">BDO Online</a></p>
+              <p><a href="https://www.lbpiaccess.com/" target="_blank">Landbank iAccess</a></p>
+              <p><a href="https://www.metrobank.com.ph/home" target="_blank">Metrobank Online</a></p>
+              <p><a href="https://online.bpi.com.ph" target="_blank">BPI Online</a></p>
+            </div>
+         
+            <p><strong>After sending your payment, please email your receipt to:</strong>
+              <span style="color:#0077b6; font-weight:bold;">adamtravelagency@outlook.com</span>
+            </p>
+
+              <div style="text-align:left; margin-top:15px;">
+                <button class="upload-receipt-btn"
+                onclick="window.location.href='mailto:adamtravelagency@outlook.com?subject=Payment Receipt&body=Please attach your receipt to this email.'">
+                  <i class="fa-solid fa-upload" style="margin-right:8px;"></i>Send Receipt via Email
+                </button>
+
+            </div>
+          </div>
+        </div>
+        
+
+      <!-- ===== GCASH SECTION ===== -->
+      <div id="section-gcash">
+        <p class="gcash-title">Gcash Payment Instructions</p>
+        <p>1. Open GCash app</p>
+        <p>2. Tap Pay QR</p>
+        <p>3. Scan the QR code below</p>
+        <img src="images/gcash-qr-code.jpg" width="180" style="margin-top:10px;" alt="GCash QR Code">
+          <p><strong>After sending your payment, please email your receipt to:</strong>
+              <span style="color:#0077b6; font-weight:bold;">adamtravelagency@outlook.com</span>
+            </p>
+
+        <div style="text-align:left; margin-top:15px;">
+          <button class="upload-receipt-btn"
+          onclick="window.location.href='mailto:adamtravelagency@outlook.com?subject=Payment Receipt&body=Please attach your receipt to this email.'">
+            <i class="fa-solid fa-upload" style="margin-right:8px;"></i>Send Receipt via Email
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+  <!-- RIGHT -->
+  <div class="right">
+    <p>Booking information</p>
+    <hr>
+    <div class="details"></div>
+  </div>
+</div>
+
+
+<!-- ===== JAVASCRIPT SECTION ===== -->
+<script src="https://www.paypal.com/sdk/js?client-id=Abj6ru5tmRK9-mV6SjHm4Ekr4IH943vvMCsWLWERflPCLT6i20l4ivuSgh4KD62Gxs60vmErndPxO3he&currency=PHP"></script>
+
+<script>
+  //======TOGGLE MOBILE MENU AND HAMBURGER TRANSFORMATION======>
+  const menuToggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav');
+
+  menuToggle.addEventListener('click', () => {
+    nav.classList.toggle('show');
+    menuToggle.classList.toggle('active');
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true' || false;
+    menuToggle.setAttribute('aria-expanded', String(!expanded));
+  });
+
+  // Allow toggling with Enter or Space
+  menuToggle.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      menuToggle.click();
+    }
+  });
+
+
+ // SHOWING THE VISA APPLICATION PROCESS
+  document.addEventListener('DOMContentLoaded', () => {
+    const bookingStr = sessionStorage.getItem('visaBooking');
+    if (bookingStr) {
+      const booking = JSON.parse(bookingStr);
+      const container = document.querySelector('.right .details');
+      if (container && booking.data) {
+        let html = '';
+
+        html += `<div style="font-weight:bold; padding:3px 0;">Visa Booking Details</div>`;
+        html += `<ul style="list-style:none; padding:0; margin:0;">`;
+        for (const key in booking.data) {
+          html += `<li style="padding:3px 0;"><strong>${key.replace('_',' ')}:</strong> ${booking.data[key]}</li>`;
+        }
+        if (booking.visaDetails) {
+          html += `<li style="padding:3px 0;"><strong>Visa Type:</strong> ${booking.visaDetails.visa_type}</li>`;
+          html += `<li style="padding:3px 0;"><strong>Process:</strong> ${booking.visaDetails.process}</li>`;
+        }
+        container.innerHTML = html;
+      }
+    }
+  });
+
+</script>
+
+<!-- ===== FOOTER SECTION ===== -->
+<footer class="site-footer">
+  <p>&copy; 2022 Adam's Travel Agency. All rights reserved.</p>
+  <p>
+    <a href="privacy.html" style="text-decoration:none; color:#007bff;">Privacy Policy</a> | 
+    <a href="terms.html" style="text-decoration:none; color:#007bff;">Terms of Service</a>
+  </p>
+</footer>
+
+
+
+<!-- ===== JAVASCRIPT LINK SECTION ===== -->
+<script src="js/server.js"></script>
+
+
+
+</body>
+</html>
